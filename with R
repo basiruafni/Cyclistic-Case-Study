@@ -1,0 +1,919 @@
+
+> install.packages("tidyverse")
+trying URL 'https://cran.rstudio.com/bin/macosx/contrib/4.2/tidyverse_1.3.1.tgz'
+Content type 'application/x-gzip' length 421133 bytes (411 KB)
+==================================================
+downloaded 411 KB
+
+
+The downloaded binary packages are in
+	/var/folders/vh/8fxvtl5j2x97ndsbsysnmx_h0000gn/T//RtmpZ2Psla/downloaded_packages
+> library(tidyverse)
+── Attaching packages ──────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+✔ tibble  3.1.7     ✔ dplyr   1.0.9
+✔ tidyr   1.2.0     ✔ stringr 1.4.0
+✔ readr   2.1.2     ✔ forcats 0.5.1
+── Conflicts ─────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+> library(lubridate)
+
+Attaching package: ‘lubridate’
+
+The following objects are masked from ‘package:base’:
+
+    date, intersect, setdiff, union
+
+> library(ggplot2)
+> getwd()
+[1] "/Users/afnimaratuljannahbasiru/Divvy_Analysis"
+> setwd("/Users/afnimaratuljannahbasiru/Desktop/Case_Study_1/csv_files")
+> #Upload Divvy datasets (csv_files)
+> 
+> May_2021 <- read_csv("202105-divvy-tripdata.csv")
+Rows: 531633 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Jun_2021 <- read_csv("202106-divvy-tripdata.csv")
+Rows: 729595 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Jul_2021 <- read_csv("202107-divvy-tripdata.csv")
+Rows: 822410 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Aug_2021 <- read_csv("202108-divvy-tripdata.csv")
+Rows: 804352 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Sep_2021 <- read_csv("202109-divvy-tripdata.csv")
+Rows: 756147 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Oct_2021 <- read_csv("202110-divvy-tripdata.csv")
+Rows: 631226 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Nov_2021 <- read_csv("202111-divvy-tripdata.csv")
+Rows: 359978 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Dec_2021 <- read_csv("202112-divvy-tripdata.csv")
+Rows: 247540 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Jan_2022 <- read_csv("202201-divvy-tripdata.csv")
+Rows: 103770 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Feb_2022 <- read_csv("202202-divvy-tripdata.csv")
+Rows: 115609 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Mar_2022 <- read_csv("202203-divvy-tripdata.csv")
+Rows: 284042 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> Apr_2022 <- read_csv("202204-divvy-tripdata.csv")
+Rows: 371249 Columns: 13                                                                        
+── Column specification ─────────────────────────────────────
+Delimiter: ","
+chr  (7): ride_id, rideable_type, start_station_name, sta...
+dbl  (4): start_lat, start_lng, end_lat, end_lng
+dttm (2): started_at, ended_at
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> #Compare column names each of the files
+> 
+> colnames(May_2021)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Jun_2021)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Jul_2021)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Aug_2021)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Sep_2021)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Oct_2021)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Nov_2021)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Dec_2021)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Jan_2022)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Feb_2022)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Mar_2022)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> colnames(Apr_2022)
+ [1] "ride_id"            "rideable_type"     
+ [3] "started_at"         "ended_at"          
+ [5] "start_station_name" "start_station_id"  
+ [7] "end_station_name"   "end_station_id"    
+ [9] "start_lat"          "start_lng"         
+[11] "end_lat"            "end_lng"           
+[13] "member_casual"     
+> 
+> #Inspect the dataframes and look for incongruencies
+> str(May_2021)
+spec_tbl_df [531,633 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:531633] "C809ED75D6160B2A" "DD59FDCE0ACACAF3" "0AB83CB88C43EFC2" "7881AC6D39110C60" ...
+ $ rideable_type     : chr [1:531633] "electric_bike" "electric_bike" "electric_bike" "electric_bike" ...
+ $ started_at        : POSIXct[1:531633], format: "2021-05-30 11:58:15" ...
+ $ ended_at          : POSIXct[1:531633], format: "2021-05-30 12:10:39" ...
+ $ start_station_name: chr [1:531633] NA NA NA NA ...
+ $ start_station_id  : chr [1:531633] NA NA NA NA ...
+ $ end_station_name  : chr [1:531633] NA NA NA NA ...
+ $ end_station_id    : chr [1:531633] NA NA NA NA ...
+ $ start_lat         : num [1:531633] 41.9 41.9 41.9 41.9 41.9 ...
+ $ start_lng         : num [1:531633] -87.6 -87.6 -87.7 -87.7 -87.7 ...
+ $ end_lat           : num [1:531633] 41.9 41.8 41.9 41.9 41.9 ...
+ $ end_lng           : num [1:531633] -87.6 -87.6 -87.7 -87.7 -87.7 ...
+ $ member_casual     : chr [1:531633] "casual" "casual" "casual" "casual" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Jun_2021)
+spec_tbl_df [729,595 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:729595] "99FEC93BA843FB20" "06048DCFC8520CAF" "9598066F68045DF2" "B03C0FE48C412214" ...
+ $ rideable_type     : chr [1:729595] "electric_bike" "electric_bike" "electric_bike" "electric_bike" ...
+ $ started_at        : POSIXct[1:729595], format: "2021-06-13 14:31:28" ...
+ $ ended_at          : POSIXct[1:729595], format: "2021-06-13 14:34:11" ...
+ $ start_station_name: chr [1:729595] NA NA NA NA ...
+ $ start_station_id  : chr [1:729595] NA NA NA NA ...
+ $ end_station_name  : chr [1:729595] NA NA NA NA ...
+ $ end_station_id    : chr [1:729595] NA NA NA NA ...
+ $ start_lat         : num [1:729595] 41.8 41.8 41.8 41.8 41.8 ...
+ $ start_lng         : num [1:729595] -87.6 -87.6 -87.6 -87.6 -87.6 ...
+ $ end_lat           : num [1:729595] 41.8 41.8 41.8 41.8 41.8 ...
+ $ end_lng           : num [1:729595] -87.6 -87.6 -87.6 -87.6 -87.6 ...
+ $ member_casual     : chr [1:729595] "member" "member" "member" "member" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Jul_2021)
+spec_tbl_df [822,410 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:822410] "0A1B623926EF4E16" "B2D5583A5A5E76EE" "6F264597DDBF427A" "379B58EAB20E8AA5" ...
+ $ rideable_type     : chr [1:822410] "docked_bike" "classic_bike" "classic_bike" "classic_bike" ...
+ $ started_at        : POSIXct[1:822410], format: "2021-07-02 14:44:36" ...
+ $ ended_at          : POSIXct[1:822410], format: "2021-07-02 15:19:58" ...
+ $ start_station_name: chr [1:822410] "Michigan Ave & Washington St" "California Ave & Cortez St" "Wabash Ave & 16th St" "California Ave & Cortez St" ...
+ $ start_station_id  : chr [1:822410] "13001" "17660" "SL-012" "17660" ...
+ $ end_station_name  : chr [1:822410] "Halsted St & North Branch St" "Wood St & Hubbard St" "Rush St & Hubbard St" "Carpenter St & Huron St" ...
+ $ end_station_id    : chr [1:822410] "KA1504000117" "13432" "KA1503000044" "13196" ...
+ $ start_lat         : num [1:822410] 41.9 41.9 41.9 41.9 41.9 ...
+ $ start_lng         : num [1:822410] -87.6 -87.7 -87.6 -87.7 -87.7 ...
+ $ end_lat           : num [1:822410] 41.9 41.9 41.9 41.9 41.9 ...
+ $ end_lng           : num [1:822410] -87.6 -87.7 -87.6 -87.7 -87.7 ...
+ $ member_casual     : chr [1:822410] "casual" "casual" "member" "member" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Aug_2021)
+spec_tbl_df [804,352 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:804352] "99103BB87CC6C1BB" "EAFCCCFB0A3FC5A1" "9EF4F46C57AD234D" "5834D3208BFAF1DA" ...
+ $ rideable_type     : chr [1:804352] "electric_bike" "electric_bike" "electric_bike" "electric_bike" ...
+ $ started_at        : POSIXct[1:804352], format: "2021-08-10 17:15:49" ...
+ $ ended_at          : POSIXct[1:804352], format: "2021-08-10 17:22:44" ...
+ $ start_station_name: chr [1:804352] NA NA NA NA ...
+ $ start_station_id  : chr [1:804352] NA NA NA NA ...
+ $ end_station_name  : chr [1:804352] NA NA NA NA ...
+ $ end_station_id    : chr [1:804352] NA NA NA NA ...
+ $ start_lat         : num [1:804352] 41.8 41.8 42 42 41.8 ...
+ $ start_lng         : num [1:804352] -87.7 -87.7 -87.7 -87.7 -87.6 ...
+ $ end_lat           : num [1:804352] 41.8 41.8 42 42 41.8 ...
+ $ end_lng           : num [1:804352] -87.7 -87.6 -87.7 -87.7 -87.6 ...
+ $ member_casual     : chr [1:804352] "member" "member" "member" "member" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Sep_2021)
+spec_tbl_df [756,147 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:756147] "9DC7B962304CBFD8" "F930E2C6872D6B32" "6EF72137900BB910" "78D1DE133B3DBF55" ...
+ $ rideable_type     : chr [1:756147] "electric_bike" "electric_bike" "electric_bike" "electric_bike" ...
+ $ started_at        : POSIXct[1:756147], format: "2021-09-28 16:07:10" ...
+ $ ended_at          : POSIXct[1:756147], format: "2021-09-28 16:09:54" ...
+ $ start_station_name: chr [1:756147] NA NA NA NA ...
+ $ start_station_id  : chr [1:756147] NA NA NA NA ...
+ $ end_station_name  : chr [1:756147] NA NA NA NA ...
+ $ end_station_id    : chr [1:756147] NA NA NA NA ...
+ $ start_lat         : num [1:756147] 41.9 41.9 41.8 41.8 41.9 ...
+ $ start_lng         : num [1:756147] -87.7 -87.6 -87.7 -87.7 -87.7 ...
+ $ end_lat           : num [1:756147] 41.9 42 41.8 41.8 41.9 ...
+ $ end_lng           : num [1:756147] -87.7 -87.7 -87.7 -87.7 -87.7 ...
+ $ member_casual     : chr [1:756147] "casual" "casual" "casual" "casual" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Oct_2021)
+spec_tbl_df [631,226 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:631226] "620BC6107255BF4C" "4471C70731AB2E45" "26CA69D43D15EE14" "362947F0437E1514" ...
+ $ rideable_type     : chr [1:631226] "electric_bike" "electric_bike" "electric_bike" "electric_bike" ...
+ $ started_at        : POSIXct[1:631226], format: "2021-10-22 12:46:42" ...
+ $ ended_at          : POSIXct[1:631226], format: "2021-10-22 12:49:50" ...
+ $ start_station_name: chr [1:631226] "Kingsbury St & Kinzie St" NA NA NA ...
+ $ start_station_id  : chr [1:631226] "KA1503000043" NA NA NA ...
+ $ end_station_name  : chr [1:631226] NA NA NA NA ...
+ $ end_station_id    : chr [1:631226] NA NA NA NA ...
+ $ start_lat         : num [1:631226] 41.9 41.9 41.9 41.9 41.9 ...
+ $ start_lng         : num [1:631226] -87.6 -87.7 -87.7 -87.7 -87.7 ...
+ $ end_lat           : num [1:631226] 41.9 41.9 41.9 41.9 41.9 ...
+ $ end_lng           : num [1:631226] -87.6 -87.7 -87.7 -87.7 -87.7 ...
+ $ member_casual     : chr [1:631226] "member" "member" "member" "member" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Nov_2021)
+spec_tbl_df [359,978 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:359978] "7C00A93E10556E47" "90854840DFD508BA" "0A7D10CDD144061C" "2F3BE33085BCFF02" ...
+ $ rideable_type     : chr [1:359978] "electric_bike" "electric_bike" "electric_bike" "electric_bike" ...
+ $ started_at        : POSIXct[1:359978], format: "2021-11-27 13:27:38" ...
+ $ ended_at          : POSIXct[1:359978], format: "2021-11-27 13:46:38" ...
+ $ start_station_name: chr [1:359978] NA NA NA NA ...
+ $ start_station_id  : chr [1:359978] NA NA NA NA ...
+ $ end_station_name  : chr [1:359978] NA NA NA NA ...
+ $ end_station_id    : chr [1:359978] NA NA NA NA ...
+ $ start_lat         : num [1:359978] 41.9 42 42 41.9 41.9 ...
+ $ start_lng         : num [1:359978] -87.7 -87.7 -87.7 -87.8 -87.6 ...
+ $ end_lat           : num [1:359978] 42 41.9 42 41.9 41.9 ...
+ $ end_lng           : num [1:359978] -87.7 -87.7 -87.7 -87.8 -87.6 ...
+ $ member_casual     : chr [1:359978] "casual" "casual" "casual" "casual" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Dec_2021)
+spec_tbl_df [247,540 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:247540] "46F8167220E4431F" "73A77762838B32FD" "4CF42452054F59C5" "3278BA87BF698339" ...
+ $ rideable_type     : chr [1:247540] "electric_bike" "electric_bike" "electric_bike" "classic_bike" ...
+ $ started_at        : POSIXct[1:247540], format: "2021-12-07 15:06:07" ...
+ $ ended_at          : POSIXct[1:247540], format: "2021-12-07 15:13:42" ...
+ $ start_station_name: chr [1:247540] "Laflin St & Cullerton St" "LaSalle Dr & Huron St" "Halsted St & North Branch St" "Halsted St & North Branch St" ...
+ $ start_station_id  : chr [1:247540] "13307" "KP1705001026" "KA1504000117" "KA1504000117" ...
+ $ end_station_name  : chr [1:247540] "Morgan St & Polk St" "Clarendon Ave & Leland Ave" "Broadway & Barry Ave" "LaSalle Dr & Huron St" ...
+ $ end_station_id    : chr [1:247540] "TA1307000130" "TA1307000119" "13137" "KP1705001026" ...
+ $ start_lat         : num [1:247540] 41.9 41.9 41.9 41.9 41.9 ...
+ $ start_lng         : num [1:247540] -87.7 -87.6 -87.6 -87.6 -87.7 ...
+ $ end_lat           : num [1:247540] 41.9 42 41.9 41.9 41.9 ...
+ $ end_lng           : num [1:247540] -87.7 -87.7 -87.6 -87.6 -87.6 ...
+ $ member_casual     : chr [1:247540] "member" "casual" "member" "member" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Jan_2022)
+spec_tbl_df [103,770 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:103770] "C2F7DD78E82EC875" "A6CF8980A652D272" "BD0F91DFF741C66D" "CBB80ED419105406" ...
+ $ rideable_type     : chr [1:103770] "electric_bike" "electric_bike" "classic_bike" "classic_bike" ...
+ $ started_at        : POSIXct[1:103770], format: "2022-01-13 11:59:47" ...
+ $ ended_at          : POSIXct[1:103770], format: "2022-01-13 12:02:44" ...
+ $ start_station_name: chr [1:103770] "Glenwood Ave & Touhy Ave" "Glenwood Ave & Touhy Ave" "Sheffield Ave & Fullerton Ave" "Clark St & Bryn Mawr Ave" ...
+ $ start_station_id  : chr [1:103770] "525" "525" "TA1306000016" "KA1504000151" ...
+ $ end_station_name  : chr [1:103770] "Clark St & Touhy Ave" "Clark St & Touhy Ave" "Greenview Ave & Fullerton Ave" "Paulina St & Montrose Ave" ...
+ $ end_station_id    : chr [1:103770] "RP-007" "RP-007" "TA1307000001" "TA1309000021" ...
+ $ start_lat         : num [1:103770] 42 42 41.9 42 41.9 ...
+ $ start_lng         : num [1:103770] -87.7 -87.7 -87.7 -87.7 -87.6 ...
+ $ end_lat           : num [1:103770] 42 42 41.9 42 41.9 ...
+ $ end_lng           : num [1:103770] -87.7 -87.7 -87.7 -87.7 -87.6 ...
+ $ member_casual     : chr [1:103770] "casual" "casual" "member" "casual" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Feb_2022)
+spec_tbl_df [115,609 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:115609] "E1E065E7ED285C02" "1602DCDC5B30FFE3" "BE7DD2AF4B55C4AF" "A1789BDF844412BE" ...
+ $ rideable_type     : chr [1:115609] "classic_bike" "classic_bike" "classic_bike" "classic_bike" ...
+ $ started_at        : POSIXct[1:115609], format: "2022-02-19 18:08:41" ...
+ $ ended_at          : POSIXct[1:115609], format: "2022-02-19 18:23:56" ...
+ $ start_station_name: chr [1:115609] "State St & Randolph St" "Halsted St & Wrightwood Ave" "State St & Randolph St" "Southport Ave & Waveland Ave" ...
+ $ start_station_id  : chr [1:115609] "TA1305000029" "TA1309000061" "TA1305000029" "13235" ...
+ $ end_station_name  : chr [1:115609] "Clark St & Lincoln Ave" "Southport Ave & Wrightwood Ave" "Canal St & Adams St" "Broadway & Sheridan Rd" ...
+ $ end_station_id    : chr [1:115609] "13179" "TA1307000113" "13011" "13323" ...
+ $ start_lat         : num [1:115609] 41.9 41.9 41.9 41.9 41.9 ...
+ $ start_lng         : num [1:115609] -87.6 -87.6 -87.6 -87.7 -87.6 ...
+ $ end_lat           : num [1:115609] 41.9 41.9 41.9 42 41.9 ...
+ $ end_lng           : num [1:115609] -87.6 -87.7 -87.6 -87.6 -87.6 ...
+ $ member_casual     : chr [1:115609] "member" "member" "member" "member" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Mar_2022)
+spec_tbl_df [284,042 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:284042] "47EC0A7F82E65D52" "8494861979B0F477" "EFE527AF80B66109" "9F446FD9DEE3F389" ...
+ $ rideable_type     : chr [1:284042] "classic_bike" "electric_bike" "classic_bike" "classic_bike" ...
+ $ started_at        : POSIXct[1:284042], format: "2022-03-21 13:45:01" ...
+ $ ended_at          : POSIXct[1:284042], format: "2022-03-21 13:51:18" ...
+ $ start_station_name: chr [1:284042] "Wabash Ave & Wacker Pl" "Michigan Ave & Oak St" "Broadway & Berwyn Ave" "Wabash Ave & Wacker Pl" ...
+ $ start_station_id  : chr [1:284042] "TA1307000131" "13042" "13109" "TA1307000131" ...
+ $ end_station_name  : chr [1:284042] "Kingsbury St & Kinzie St" "Orleans St & Chestnut St (NEXT Apts)" "Broadway & Ridge Ave" "Franklin St & Jackson Blvd" ...
+ $ end_station_id    : chr [1:284042] "KA1503000043" "620" "15578" "TA1305000025" ...
+ $ start_lat         : num [1:284042] 41.9 41.9 42 41.9 41.9 ...
+ $ start_lng         : num [1:284042] -87.6 -87.6 -87.7 -87.6 -87.6 ...
+ $ end_lat           : num [1:284042] 41.9 41.9 42 41.9 41.9 ...
+ $ end_lng           : num [1:284042] -87.6 -87.6 -87.7 -87.6 -87.7 ...
+ $ member_casual     : chr [1:284042] "member" "member" "member" "member" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> str(Apr_2022)
+spec_tbl_df [371,249 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:371249] "3564070EEFD12711" "0B820C7FCF22F489" "89EEEE32293F07FF" "84D4751AEB31888D" ...
+ $ rideable_type     : chr [1:371249] "electric_bike" "classic_bike" "classic_bike" "classic_bike" ...
+ $ started_at        : POSIXct[1:371249], format: "2022-04-06 17:42:48" ...
+ $ ended_at          : POSIXct[1:371249], format: "2022-04-06 17:54:36" ...
+ $ start_station_name: chr [1:371249] "Paulina St & Howard St" "Wentworth Ave & Cermak Rd" "Halsted St & Polk St" "Wentworth Ave & Cermak Rd" ...
+ $ start_station_id  : chr [1:371249] "515" "13075" "TA1307000121" "13075" ...
+ $ end_station_name  : chr [1:371249] "University Library (NU)" "Green St & Madison St" "Green St & Madison St" "Delano Ct & Roosevelt Rd" ...
+ $ end_station_id    : chr [1:371249] "605" "TA1307000120" "TA1307000120" "KA1706005007" ...
+ $ start_lat         : num [1:371249] 42 41.9 41.9 41.9 41.9 ...
+ $ start_lng         : num [1:371249] -87.7 -87.6 -87.6 -87.6 -87.6 ...
+ $ end_lat           : num [1:371249] 42.1 41.9 41.9 41.9 41.9 ...
+ $ end_lng           : num [1:371249] -87.7 -87.6 -87.6 -87.6 -87.6 ...
+ $ member_casual     : chr [1:371249] "member" "member" "member" "casual" ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   ride_id = col_character(),
+  ..   rideable_type = col_character(),
+  ..   started_at = col_datetime(format = ""),
+  ..   ended_at = col_datetime(format = ""),
+  ..   start_station_name = col_character(),
+  ..   start_station_id = col_character(),
+  ..   end_station_name = col_character(),
+  ..   end_station_id = col_character(),
+  ..   start_lat = col_double(),
+  ..   start_lng = col_double(),
+  ..   end_lat = col_double(),
+  ..   end_lng = col_double(),
+  ..   member_casual = col_character()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+> 
+> > #Stack individual quarter's data frames into one big data frame
+Error: unexpected '>' in ">"
+> all_trips <- bind_rows(May_2021, Jun_2021, Jul_2021, Aug_2021, Sep_2021, Oct_2021, Nov_2021, Dec_2021, Jan_2022, Feb_2022, Mar_2022, Apr_2022)
+> #Stack individual quarter's data frames into one big data frame
+> all_trips <- bind_rows(May_2021, Jun_2021, Jul_2021, Aug_2021, Sep_2021, Oct_2021, Nov_2021, Dec_2021, Jan_2022, Feb_2022, Mar_2022, Apr_2022)
+> 
+> #Remove lat and long fields
+> all_trips <- all_trips %>%
++     select(-c(start_lat, start_lng, end_lat, end_lng))
+> 
+> #Inspect the new table that has been created
+> colnames(all_trips)
+[1] "ride_id"            "rideable_type"     
+[3] "started_at"         "ended_at"          
+[5] "start_station_name" "start_station_id"  
+[7] "end_station_name"   "end_station_id"    
+[9] "member_casual"     
+> 
+> nrow(all_trips)
+[1] 5757551
+> dim(all_trips)
+[1] 5757551       9
+> head(all_trips)
+# A tibble: 6 × 9
+  ride_id          rideable_type started_at         
+  <chr>            <chr>         <dttm>             
+1 C809ED75D6160B2A electric_bike 2021-05-30 11:58:15
+2 DD59FDCE0ACACAF3 electric_bike 2021-05-30 11:29:14
+3 0AB83CB88C43EFC2 electric_bike 2021-05-30 14:24:01
+4 7881AC6D39110C60 electric_bike 2021-05-30 14:25:51
+5 853FA701B4582BAF electric_bike 2021-05-30 18:15:39
+6 F5E63DFD96B2A737 electric_bike 2021-05-30 11:33:41
+# … with 6 more variables: ended_at <dttm>,
+#   start_station_name <chr>, start_station_id <chr>,
+#   end_station_name <chr>, end_station_id <chr>,
+#   member_casual <chr>
+> str(all_trips)
+tibble [5,757,551 × 9] (S3: tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:5757551] "C809ED75D6160B2A" "DD59FDCE0ACACAF3" "0AB83CB88C43EFC2" "7881AC6D39110C60" ...
+ $ rideable_type     : chr [1:5757551] "electric_bike" "electric_bike" "electric_bike" "electric_bike" ...
+ $ started_at        : POSIXct[1:5757551], format: "2021-05-30 11:58:15" ...
+ $ ended_at          : POSIXct[1:5757551], format: "2021-05-30 12:10:39" ...
+ $ start_station_name: chr [1:5757551] NA NA NA NA ...
+ $ start_station_id  : chr [1:5757551] NA NA NA NA ...
+ $ end_station_name  : chr [1:5757551] NA NA NA NA ...
+ $ end_station_id    : chr [1:5757551] NA NA NA NA ...
+ $ member_casual     : chr [1:5757551] "casual" "casual" "casual" "casual" ...
+> summary(all_trips)
+   ride_id          rideable_type     
+ Length:5757551     Length:5757551    
+ Class :character   Class :character  
+ Mode  :character   Mode  :character  
+                                      
+                                      
+                                      
+   started_at                    
+ Min.   :2021-05-01 00:00:11.00  
+ 1st Qu.:2021-07-07 14:52:45.00  
+ Median :2021-08-31 17:17:20.00  
+ Mean   :2021-09-18 18:21:45.73  
+ 3rd Qu.:2021-11-03 20:25:37.50  
+ Max.   :2022-04-30 23:59:54.00  
+    ended_at                      start_station_name
+ Min.   :2021-05-01 00:03:26.00   Length:5757551    
+ 1st Qu.:2021-07-07 15:16:14.50   Class :character  
+ Median :2021-08-31 17:34:09.00   Mode  :character  
+ Mean   :2021-09-18 18:42:54.02                     
+ 3rd Qu.:2021-11-03 20:38:44.50                     
+ Max.   :2022-05-02 00:35:01.00                     
+ start_station_id   end_station_name   end_station_id    
+ Length:5757551     Length:5757551     Length:5757551    
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         
+ member_casual     
+ Length:5757551    
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   
+> # Add a "ride_length" calculation to all_trips (in seconds)
+> all_trips$ride_length <- difftime(all_trips$ended_at,all_trips$started_at)
+> 
+> # Inspect the structure of the columns
+> str(all_trips)
+tibble [5,757,551 × 10] (S3: tbl_df/tbl/data.frame)
+ $ ride_id           : chr [1:5757551] "C809ED75D6160B2A" "DD59FDCE0ACACAF3" "0AB83CB88C43EFC2" "7881AC6D39110C60" ...
+ $ rideable_type     : chr [1:5757551] "electric_bike" "electric_bike" "electric_bike" "electric_bike" ...
+ $ started_at        : POSIXct[1:5757551], format: "2021-05-30 11:58:15" ...
+ $ ended_at          : POSIXct[1:5757551], format: "2021-05-30 12:10:39" ...
+ $ start_station_name: chr [1:5757551] NA NA NA NA ...
+ $ start_station_id  : chr [1:5757551] NA NA NA NA ...
+ $ end_station_name  : chr [1:5757551] NA NA NA NA ...
+ $ end_station_id    : chr [1:5757551] NA NA NA NA ...
+ $ member_casual     : chr [1:5757551] "casual" "casual" "casual" "casual" ...
+ $ ride_length       : 'difftime' num [1:5757551] 744 2695 72 913 ...
+  ..- attr(*, "units")= chr "secs"
+> 
+> # Convert "ride_length" from Factor to numeric 
+> is.factor(all_trips$ride_length)
+[1] FALSE
+> all_trips$ride_length <- as.numeric(as.character(all_trips$ride_length))
+> is.numeric(all_trips$ride_length)
+[1] TRUE
+> 
+> #Descriptive analysis on ride_length (all figures in seconds)
+> mean(all_trips$ride_length) #straight average (total ride length / rides)
+[1] 1268.298
+> median(all_trips$ride_length) #midpoint number in the ascending array of ride lengths
+[1] 691
+> max(all_trips$ride_length) #longest ride
+[1] 3356649
+> min(all_trips$ride_length) #shortest ride
+[1] -3482
+> 
+> #Condense the four lines above to one line using summary() on the specific attribute
+> summary(all_trips$ride_length)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  -3482     387     691    1268    1257 3356649 
+>
+> #Compare members and casual users
+> aggregate(all_trips$ride_length ~ all_trips$member_casual, FUN = mean)
+  all_trips$member_casual all_trips$ride_length
+1                  casual             1877.4464
+2                  member              788.6568
+> aggregate(all_trips$ride_length ~ all_trips$member_casual, FUN = median)
+  all_trips$member_casual all_trips$ride_length
+1                  casual                   934
+2                  member                   551
+> aggregate(all_trips$ride_length ~ all_trips$member_casual, FUN = max)
+  all_trips$member_casual all_trips$ride_length
+1                  casual               3356649
+2                  member                 93594
+> aggregate(all_trips$ride_length ~ all_trips$member_casual, FUN = min)
+  all_trips$member_casual all_trips$ride_length
+1                  casual                 -3482
+2                  member                 -3245
+> 
+># Add columns that list the date, month, day, and year of each ride
+all_trips$date <- as.Date(all_trips$started_at) #The default format is yyyy-mm-dd
+all_trips$month <- format(as.Date(all_trips$date), "%m")
+all_trips$day <- format(as.Date(all_trips$date), "%d")
+all_trips$year <- format(as.Date(all_trips$date), "%Y")
+all_trips$day_of_week <- format(as.Date(all_trips$date), "%A")
+
+> #See the average ride time by each day for members vs casual users
+> aggregate(all_trips$ride_length ~ all_trips$member_casual + all_trips$day_of_week, FUN = mean)
+   all_trips$member_casual all_trips$day_of_week
+1                   casual                Friday
+2                   member                Friday
+3                   casual                Monday
+4                   member                Monday
+5                   casual              Saturday
+6                   member              Saturday
+7                   casual                Sunday
+8                   member                Sunday
+9                   casual              Thursday
+10                  member              Thursday
+11                  casual               Tuesday
+12                  member               Tuesday
+13                  casual             Wednesday
+14                  member             Wednesday
+   all_trips$ride_length
+1              1752.5112
+2               772.6730
+3              1863.9445
+4               762.7352
+5              2051.5668
+6               886.8430
+7              2217.8035
+8               903.5035
+9              1673.2608
+10              746.2833
+11             1587.8214
+12              735.5760
+13             1625.5540
+14              744.9022
+> 
+> 
+> #Notice that the days of the week are out of order. Let's fix that.
+> all_trips$day_of_week <- ordered(all_trips$day_of_week, levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
+> 
+> #Run the average ride time by each day for members vs casual users
+> aggregate(all_trips$ride_length ~ all_trips$member_casual + all_trips$day_of_week, FUN = mean)
+   all_trips$member_casual all_trips$day_of_week
+1                   casual                Sunday
+2                   member                Sunday
+3                   casual                Monday
+4                   member                Monday
+5                   casual               Tuesday
+6                   member               Tuesday
+7                   casual             Wednesday
+8                   member             Wednesday
+9                   casual              Thursday
+10                  member              Thursday
+11                  casual                Friday
+12                  member                Friday
+13                  casual              Saturday
+14                  member              Saturday
+   all_trips$ride_length
+1              2217.8035
+2               903.5035
+3              1863.9445
+4               762.7352
+5              1587.8214
+6               735.5760
+7              1625.5540
+8               744.9022
+9              1673.2608
+10              746.2833
+11             1752.5112
+12              772.6730
+13             2051.5668
+14              886.8430
+> 
+> # analyze ridership data by type and weekday
+> all_trips %>% 
++     mutate(weekday = wday(started_at, label = TRUE)) %>%  #creates weekday field using wday()
++     group_by(member_casual, weekday) %>%  #groups by usertype and weekday
++     summarise(number_of_rides = n()							#calculates the number of rides and average duration 
++               ,average_duration = mean(ride_length)) %>% 		# calculates the average duration
++     arrange(member_casual, weekday)					
+`summarise()` has grouped output by 'member_casual'. You can
+override using the `.groups` argument.
+# A tibble: 14 × 4
+# Groups:   member_casual [2]
+   member_casual weekday number_of_rides average_duration
+   <chr>         <ord>             <int>            <dbl>
+ 1 casual        Sun              477032            2218.
+ 2 casual        Mon              289029            1864.
+ 3 casual        Tue              270548            1588.
+ 4 casual        Wed              284868            1626.
+ 5 casual        Thu              298061            1673.
+ 6 casual        Fri              358203            1753.
+ 7 casual        Sat              558617            2052.
+ 8 member        Sun              388042             904.
+ 9 member        Mon              445635             763.
+10 member        Tue              498682             736.
+11 member        Wed              506969             745.
+12 member        Thu              485843             746.
+13 member        Fri              453281             773.
+14 member        Sat              442741             887.
+> 
+>
+> # Visualize the number of rides by rider type
+> all_trips %>% 
++     mutate(weekday = wday(started_at, label = TRUE)) %>% 
++     group_by(member_casual, weekday) %>% 
++     summarise(number_of_rides = n()
++               ,average_duration = mean(ride_length)) %>% 
++     arrange(member_casual, weekday)  %>% 
++     ggplot(aes(x = weekday, y = number_of_rides, fill = member_casual)) +
++     geom_col(position = "dodge")
+`summarise()` has grouped output by 'member_casual'. You can
+override using the `.groups` argument.
+> 
+> 
+> # Create a visualization for average duration
+> all_trips %>% 
++     mutate(weekday = wday(started_at, label = TRUE)) %>% 
++     group_by(member_casual, weekday) %>% 
++     summarise(number_of_rides = n()
++               ,average_duration = mean(ride_length)) %>% 
++     arrange(member_casual, weekday)  %>% 
++     ggplot(aes(x = weekday, y = average_duration, fill = member_casual)) +
++     geom_col(position = "dodge")
+`summarise()` has grouped output by 'member_casual'. You can
+override using the `.groups` argument.
+> 
+> # EXPORT SUMMARY FILE FOR FURTHER ANALYSIS
+> # Create a csv file that we will visualize in Excel, Tableau, or my presentation software
+> 
+> counts <- aggregate(all_trips$ride_length ~ all_trips$member_casual + all_trips$day_of_week, FUN = mean)
+> write.csv(counts, file = '~/Desktop/Case_Study_1/average_ride_length.csv')
+> 
+> 
+
+
